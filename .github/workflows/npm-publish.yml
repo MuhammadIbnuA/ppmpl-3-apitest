@@ -1,3 +1,13 @@
+name: Node.js CI
+
+on: 
+  push:             # Trigger the workflow on push events
+    branches:
+      - main        # Specify the branch (you can add others if needed)
+  pull_request:     # Trigger the workflow on pull request events
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,14 +27,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Start server
-        run: npm start &
-        # Adjust this to your start script, use '&' to run in background
-
-      - name: Wait for server to be ready
-        run: sleep 5
-        # Add a delay for the server to start before running tests
 
       - name: Run tests
         run: npm test
